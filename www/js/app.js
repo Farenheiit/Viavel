@@ -3,10 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('starter', [
-  'ionic'
-
-])
+angular.module('starter', ['ionic'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -19,7 +16,8 @@ angular.module('starter', [
       StatusBar.styleDefault();
     }
   });
-}).controller('MapController', function($scope, $ionicLoading) {
+})
+.controller('MapController', function($scope, $ionicSideMenuDelegate) {
         'use strict';
         // declaração de variaveis globais
         var geocoder;
@@ -32,7 +30,7 @@ angular.module('starter', [
         function initialize () { 
             var options = {
               zoom: 17,
-        };
+            };
 
             // adiciona o map como as opcoes carregadas na id = "map" in index.html  
             map = new google.maps.Map(document.getElementById("map"), options);
@@ -142,9 +140,32 @@ angular.module('starter', [
                     }
               } // fim da função handleNoGeolocation
 
-        } // fim funcao initialize
+             
 
+
+        } // fim funcao initialize
         
         $scope.map = map;
+
+        // cria evento no clique do botão 
+        $scope.toggleLeft = function() {
+                  $ionicSideMenuDelegate.toggleLeft();
+        } 
+
+        
+        $scope.marcadores = [ 
+             {title : 'marker_01'},
+             {title : 'marker_02'},
+             {title : 'marker_03'},
+             {title : 'marker_04'}, 
+             {title : 'marker_05'},
+             {title : 'marker_06'},
+             {title : 'marker_07'},
+             {title : 'marker_08'},
+             {title : 'marker_09'},
+             {title : 'marker_10'},      
+        ];
+        
+
         google.maps.event.addDomListener(window, 'load', initialize);
 });

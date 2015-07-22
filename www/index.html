@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="starter">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
@@ -21,19 +21,28 @@
 
     <!-- your app's js -->
     <script src="js/app.js"></script>
-    <script src="js/controller.js"></script>
+    <script src="js/main.js"></script>
   </head>
-  <body ng-app="starter" ng-controller="MapController">
+  <body  ng-controller="MapController">
 
     <ion-pane>
-      <ion-header-bar class="bar-dark">
-      <button class="icon ion-navicon button button-clear"></button>
-        <h1 class="title">Viável</h1>
-      <button class="icon ion-gear-a button button-clear"></button>  
-      </ion-header-bar>
-      <ion-content >
-            <div id="map" data-tap-disabled="false"></div>
-      </ion-content>
+      <ion-side-menus> <!-- início da diretiva ion-side-menus --> 
+           <ion-side-menu-content>
+              <ion-header-bar class="bar-dark">
+              <button class="icon ion-navicon button button-clear" ng-click="toggleLeft()"></button>
+                <h1 class="title">Viável</h1>
+              <button class="icon ion-gear-a button button-clear"></button>  
+              </ion-header-bar>
+              <ion-content >
+                  <div id="map" data-tap-disabled="false"></div>
+               </ion-content>
+            </ion-side-menu-content>
+            <ion-side-menu side="left">
+                <ion-list>
+                  <ion-item ng-repeat="marcador in marcadores">{{marcador.title}}</ion-item>  
+                </ion-list>
+            </ion-side-menu> <!-- fim da diretiva ion-side-menus --> 
+      </ion-side-menus>
       <div class="tabs tabs-dark tabs-icon-top">
         <a class="tab-item"><i class="icon ion-compass"></i>Navegar</a>
         <a class="tab-item"><i class="icon ion-person"></i>Quem Somos</a>
